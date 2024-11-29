@@ -1,0 +1,50 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.heading{
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 7px;
+    font-size: 20px;
+    }
+
+
+.css-add-btn{
+    width: 50px;
+    height: 35px;
+background-color: blue;
+padding: 7px;
+border: none;
+cursor: pointer;
+
+}
+.value,
+.date{
+    font-size: 15px;
+}
+
+.delete{
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.display-grid,
+.input-grid{
+    display: grid;
+    grid-template-columns: 200px 150px 100px;
+    row-gap: 10px;
+    column-gap: 10px;
+    align-items: center;
+}
+.display-grid{
+    margin-inline-start: 0px;
+}
+
+.input-grid{
+    align-items: stretch;
+    margin-bottom: 10px;
+}

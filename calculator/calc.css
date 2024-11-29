@@ -1,0 +1,22 @@
+.calc{
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+button{
+border: none;
+border-right: 1px solid black;
+}
+
+#cancel{
+background-color: red;
+}
+
+#history{
+    background-color: green;
+    }
+    #log{
+        background-color: yellow;
+        }
