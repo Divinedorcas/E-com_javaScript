@@ -26,65 +26,102 @@ let products =[ {
     price: 1000
 }];
 
-let productHTML="";
+let homeProductHTML = "";
 products.forEach((product)=>{
- productHTML += `
+    homeProductHTML +=
+    `
 <section id="ProductsContainer">
-            <h1>Products</h1>
 
-            <section id="products_container_seller">
+            <section id="products_container">
                 <div class="product-card">
-                    <img src="/ECOM/images/bag-2.avif"
-                    <h4> ${product.name}</h4>
-                    <p>${product.price}NGN</p>
+                    <img src="${product.image}" <br><br>
+                    <h4>${product.name} </h4>
+                    <p>${product.price} NGN</p>
                     <div>
                         <button class="js-add-to-cart" data-product-id="${product.id}">Add To Cart</button>
-                        <button>Buy Now</button>
                     </div>
                 </div>
-                
             </section>
-        </section> 
- `
+        </section> `;
+        
 });
-document.getElementById("ProductsContainer").innerHTML=productHTML;
-//let cartList = [];
-             
+const product = document.querySelector(".all-products-container").innerHTML= homeProductHTML;
+
+let cart =[{productId:1,
+    Qty: 1
+},
+{productId:6,
+    Qty: 2
+}];
+
+function addToCart(Id){
     let sameProduct;
     
-    const cartData = []; 
-
- 
-    document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
-        button.addEventListener("click", ()=>{
-          const productId =  button.dataset.productId;
-         // console.log(cartData);
-        
-
-cartData.forEach((product)=>{
-    if ( productId===product.productId){
-    sameProduct = product;
+    
+    cart.forEach((product)=>{
+    if(Id===product.productId){
+    sameProduct=product;
     }
     });
     if(sameProduct){
         sameProduct.Qty+=1;
-    }else{
-        cartData.push({ productId: productId,
-            Qty: 1
-    });
-    }
-    
-    let cartQty = 0;
-    cartData.forEach((product)=>{
+        }
+          else{
+            cart.push({productId:Id,
+                Qty: 1
+            });
+          }    
+        }
+
+        function updateCart(){
+            let cartQty = 0;
+            cart.forEach((product)=>{
+               cartQty+=product.Qty;
+            });
+          
+            document.querySelector(".js-cart-display").innerHTML = cartQty;
+            cartProduct();
+          }
         
-        cartQty += product.Qty;
-        })
-       
-        });
+        function cartProduct(){
+let cartProductHTML = "";
+
+cart.forEach((cartProduct)=>{
+    const productId= cartProduct.id;
+    
+    let sameProduct;
+    
+    products.forEach((productItem)=>{
+        if(cartProduct.id===productId){
+    sameProduct= productItem;
+        }
     });
-// console.log(cartData);
+    cartProductHTML +=
+    `
+<section id="ProductsContainer">
+
+            <section id="products_container">
+                <div class="product-card">
+                    <img src="${ sameProduct.image}" <br><br>
+                    <h4>${ sameProduct.name} </h4>
+                    <p>${ sameProduct.price} NGN</p>
+                    <h4>Qty: ${ cartProduct.Qty} </h4>
+                    <div>
+                    </div>
+                </div>
+            </section>
+        </section> `;
+        
+});
+const cartProduct = document.querySelector("#display-cart").innerHTML= cartProductHTML;
+}
 
 
-//     document.querySelector('.js-cart-display').innerHTML = cartQty;
-     document.querySelector('.display-cart').innerHTML = cartData;
- 
+document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
+    button.addEventListener("click",()=>{
+     const Id =button.dataset.productId;
+     
+     addToCart(Id)
+     updateCart()
+    });
+    });
