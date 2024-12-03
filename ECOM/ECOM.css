@@ -157,3 +157,10 @@ button:hover{
 #footer p{
     color: white;
 }
+#sidebar{
+    min-height: 200px;
+    background-color: rgb(232, 232, 232);
+    padding: 10px;
+    min-width: 100px;
+    width: 10%;
+}
