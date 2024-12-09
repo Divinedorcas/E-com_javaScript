@@ -46,8 +46,28 @@ products.forEach((product)=>{
         
 });
 const product = document.querySelector(".all-products-container").innerHTML= homeProductHTML;
+let cart  =[{productId: 3,
+    Qty: 1
+}];
 
-let cart =[];
+function cartH(cart){
+    
+    
+    cart.forEach((productInCart)=>{
+//const productId = productInCart.productId;
+console.log("productId");
+
+    });
+    console.log("productId");
+   
+}
+// let cart  = JSON.parse(localStorage.getItem("cart"));
+// if (!cart){
+// [{Id: 2,
+//     Qty: 1
+// }]
+// }
+
 
 function addToCart(Id){
     let sameProduct;
@@ -56,6 +76,7 @@ function addToCart(Id){
     cart.forEach((product)=>{
     if(Id===product.productId){
     sameProduct=product;
+   
     }
     });
     if(sameProduct){
@@ -65,7 +86,8 @@ function addToCart(Id){
             cart.push({productId:Id,
                 Qty: 1
             });
-          }    
+          }
+          console.log(cart); 
         }
 
  function updateCart(){
@@ -76,68 +98,27 @@ function addToCart(Id){
           
             document.querySelector(".js-cart-display").innerHTML = cartQty;
           }
-        
- function cartProduct(){
-let cartProductHTML = "";
-let theSameProduct;
-
-cart.forEach((cartProduct)=>{
-    const productId= cartProduct.id;
     
-products.forEach((productItem)=>{
-        if(cartProduct.id===productId){
-   theSameProduct= productItem;
-        }
-    });
-        cartProductHTML +=
-        `
-    <section id="ProductsContainer">
-    
-                <section id="products_container">
-                    <div class="product-card">
-                        <img src="${ theSameProduct.image}" <br><br>
-                        <h4>${ theSameProduct.name} </h4>
-                        <p>${ theSameProduct.price} NGN</p>
-                        <h4>Qty: ${cartProduct.Qty} </h4>
-                        <div>
-                        <button class="js-decrease-cart-qty">-</button>
-                        <button class="js-remove-from-cart" data-product-id="${product.id}">Remove</button>
-                        <button onclick="increaseProductQty()" class="js-increase-cart-qty" >+</button>
-                        </div>
-                    </div>
-                </section>
-            </section> `;
+  
 
-    
-        
-});
-const cartProduct = document.querySelector("#display-cart").innerHTML= cartProductHTML;
- }
-
-function saveToLocalStorage(){
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    const save= JSON.parse(localStorage.getItem(cart));
- }
-
-
- function orderSummaryDetails(){
+//  function orderSummaryDetails(){
 
  
-    let orderSumHTML="";
-    orderSumHTML+=
-    `
-    <div id="sidebar">
-    <h3>Order summary</h3>
-    <p>Items (5)</p>
-    <p>Shipping fee $3000</p>
-    <h3>Total</h3>
-    <button>Place your Order</button>
- </div>
- `;
+//     let orderSumHTML="";
+//     orderSumHTML+=
+//     `
+//     <div id="sidebar">
+//     <h3>Order summary</h3>
+//     <p>Items (5)</p>
+//     <p>Shipping fee $3000</p>
+//     <h3>Total</h3>
+//     <button>Place your Order</button>
+//  </div>
+//  `;
 
-document.querySelector(".js-order-summary").innerHTML= orderSumHTML;
- }
+// document.querySelector(".js-order-summary").innerHTML= orderSumHTML;
+//  }
+
 
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
     button.addEventListener("click",()=>{
@@ -145,9 +126,10 @@ document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
      
      addToCart(Id)
      updateCart()
-     cartProduct()
-     saveToLocalStorage()
+     //cartProduct()
      orderSummaryDetails()
+
+     
     });
     });
 

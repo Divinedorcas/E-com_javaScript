@@ -28,7 +28,7 @@
 
 
     <div class="js-order-summary"></div>
-   
+  
 	<!-- 
  <section id="HeroContainer">
     <span></span>
@@ -38,8 +38,7 @@
             </div>
  </section> -->
  <section id="display-cart">
-           
- </section> 
+</section> 
 
 <section class="all-products-container"></section>
  <div id="footer">
@@ -52,6 +51,26 @@
     <p>&copy; Copyright 2008</p>
   
 </div>
+
+
+cartProductHTML +=
+`
+<section id="ProductsContainer">
+
+        <section id="products_container">
+            <div class="product-card">
+                <img src="${theSameProduct.image}" <br><br>
+                <h4>${ theSameProduct.name} </h4>
+                <p>${ theSameProduct.price} NGN</p>
+                <h4>Qty: ${cartProduct.Qty} </h4>
+                <div>
+                <button class="js-decrease-cart-qty">-</button>
+                <button class="js-remove-from-cart" data-product-id="${product.id}">Remove</button>
+                <button onclick="increaseProductQty()" class="js-increase-cart-qty" >+</button>
+                </div>
+            </div>
+        </section>
+    </section> `;   
 
 
 
