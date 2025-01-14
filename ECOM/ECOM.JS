@@ -1,12 +1,12 @@
 
 let products =[ {
     id: 6,
-    image: "/ECOM/images/bag-2.avif",
+    image: "/ECOM/images/bag-1.avif",
     name: "shoecase",
     price: 2000
 },{
     id: 1,
-      image: "/ECOM/images/bag-1.avif",
+      image: "/ECOM/images/bag-2.avif",
     name: "shoe",
     price: 12000
 },{
@@ -46,21 +46,11 @@ products.forEach((product)=>{
         
 });
 const product = document.querySelector(".all-products-container").innerHTML= homeProductHTML;
+
+
 let cart  =[{productId: 3,
     Qty: 1
 }];
-
-function cartH(cart){
-    
-    
-    cart.forEach((productInCart)=>{
-//const productId = productInCart.productId;
-console.log("productId");
-
-    });
-    console.log("productId");
-   
-}
 // let cart  = JSON.parse(localStorage.getItem("cart"));
 // if (!cart){
 // [{Id: 2,
@@ -69,12 +59,12 @@ console.log("productId");
 // }
 
 
-function addToCart(Id){
+function addToCart(id){
     let sameProduct;
     
     
     cart.forEach((product)=>{
-    if(Id===product.productId){
+    if(id===product.productId){
     sameProduct=product;
    
     }
@@ -83,11 +73,11 @@ function addToCart(Id){
         sameProduct.Qty+=1;
         }
           else{
-            cart.push({productId:Id,
+            cart.push({productId:id,
                 Qty: 1
             });
           }
-          console.log(cart); 
+          
         }
 
  function updateCart(){
@@ -98,7 +88,41 @@ function addToCart(Id){
           
             document.querySelector(".js-cart-display").innerHTML = cartQty;
           }
+         
+function cartProductShow(id){
+
+    let cartProductHTML= "";
+    cart.forEach((productInCart)=>{
+        const productId=productInCart.id;
+        let same = "";
+        products.forEach((productItem)=>{
+            if(productInCart.id === productId){
+                same = productItem;
+                }
+                    
+        })
     
+    cartProductHTML +=
+    `
+    <section id="ProductsContainer">
+    
+        <section id="products_container">
+            <div class="product-card">
+                <img src="${same.image}" <br><br>
+                <h4>${ same.name} </h4>
+                <p>${ same.price} NGN</p>
+                <h4>Qty: ${productInCart.Qty} </h4>
+                <div>
+                <button class="js-decrease-cart-qty">-</button>
+                <button class="js-remove-from-cart" data-product-id="${product.id}">Remove</button>
+                <button onclick="increaseProductQty() updateCart()" class="js-increase-cart-qty" >+</button>
+                </div>
+            </div>
+        </section>
+    </section> `;   
+     document.querySelector(".all-products-container").innerHTML= cartProductHTML;
+    })
+    }
   
 
 //  function orderSummaryDetails(){
@@ -119,18 +143,17 @@ function addToCart(Id){
 // document.querySelector(".js-order-summary").innerHTML= orderSumHTML;
 //  }
 
-
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
     button.addEventListener("click",()=>{
-     const Id =button.dataset.productId;
+     const id =button.dataset.productId;
      
-     addToCart(Id)
+     addToCart(id)
      updateCart()
+     cartProductShow(id)
      //cartProduct()
-     orderSummaryDetails()
-
-     
+    // orderSummaryDetails()
     });
-    });
+    })
 
    
+
